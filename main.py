@@ -12,15 +12,13 @@ bot: Bot = Bot(token=BOT_TOKEN)
 dp: Dispatcher = Dispatcher()
 
 
-@dp.message(Command(commands=['start', 'help']))
 async def process_start_help_command(message: Message):
     user_id = message.from_user.id
     print(user_id)
     await message.answer("Напиши мне что-нибудь и я отправлю тебе картинку=)")
 
 
-@dp.message()
-async def send_cat(message: Message):
+async def send_echo(message: Message):
 
     user_id = message.from_user.id
     print(user_id)
@@ -35,7 +33,7 @@ async def send_cat(message: Message):
             await bot.send_message(lera_id, "Картинка котика специально для Леры <3 наслаждайся!")
             await bot.send_sticker(chat_id=lera_id,
                                    sticker=r"CAACAgIAAxkBAAEIQW5kHKQTv3YJ1eLwiTqeBirQHAb9uAACsgAD98zUGN0m4YqZQUzILwQ")
-        await bot.send_photo(chat_id=lera_id, photo=cat_link)
+            await bot.send_photo(chat_id=lera_id, photo=cat_link)
         # конец для леры
 
         await bot.send_photo(chat_id=message.from_user.id, photo=cat_link)
@@ -48,7 +46,7 @@ async def send_cat(message: Message):
             await bot.send_message(lera_id, "Картинка котика специально для Леры <3 наслаждайся!")
             await bot.send_sticker(chat_id=lera_id,
                                    sticker=r"CAACAgIAAxkBAAEIQW5kHKQTv3YJ1eLwiTqeBirQHAb9uAACsgAD98zUGN0m4YqZQUzILwQ")
-        await bot.send_photo(chat_id=lera_id, photo=dog_link)
+            await bot.send_photo(chat_id=lera_id, photo=dog_link)
         # конец для леры
 
         await bot.send_photo(chat_id=message.from_user.id, photo=dog_link)
@@ -61,10 +59,14 @@ async def send_cat(message: Message):
             await bot.send_message(lera_id, "Картинка котика специально для Леры <3 наслаждайся!")
             await bot.send_sticker(chat_id=lera_id,
                                    sticker=r"CAACAgIAAxkBAAEIQW5kHKQTv3YJ1eLwiTqeBirQHAb9uAACsgAD98zUGN0m4YqZQUzILwQ")
-        await bot.send_photo(chat_id=lera_id, photo=fog_link)
+            await bot.send_photo(chat_id=lera_id, photo=fog_link)
         # конец для леры
 
         await bot.send_photo(chat_id=message.from_user.id, photo=fog_link)
+
+
+dp.message.register(process_start_help_command, Command(commands=["start", "help"]))
+dp.message.register(send_echo)
 
 
 if __name__ == "__main__":
