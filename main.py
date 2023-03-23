@@ -4,7 +4,6 @@ from config import *
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message
-print("hello")
 API_URL_CAT: str = "https://aws.random.cat/meow"
 API_URL_DOG: str = "https://random.dog/woof.json"
 API_URL_FOG: str = "https://randomfox.ca/floof/"
